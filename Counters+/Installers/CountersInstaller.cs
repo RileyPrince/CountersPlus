@@ -95,7 +95,7 @@ namespace CountersPlus.Installers
 
             Plugin.Logger.Debug($"Loading counter {settings.DisplayName}...");
 
-            if (typeof(R).BaseType == typeof(MonoBehaviour))
+            if (typeof(MonoBehaviour).IsAssignableFrom(typeof(R)))
             {
                 Container.BindInterfacesAndSelfTo<R>().FromNewComponentOnRoot().AsSingle().NonLazy();
             }
@@ -117,7 +117,7 @@ namespace CountersPlus.Installers
 
                 Plugin.Logger.Debug($"Loading counter {customCounter.Name}...");
 
-                if (counterType.BaseType == typeof(MonoBehaviour))
+                if (typeof(MonoBehaviour).IsAssignableFrom(counterType))
                 {
                     Container.BindInterfacesAndSelfTo(counterType).FromNewComponentOnRoot().AsSingle().NonLazy();
                 }

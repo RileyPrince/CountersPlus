@@ -30,9 +30,9 @@ namespace CountersPlus.Installers
                 if (customCounter.BSML != null && customCounter.BSML.HasType)
                 {
                     Type hostType = customCounter.BSML.HostType;
-                    if (hostType.BaseType == typeof(MonoBehaviour))
+                    if (typeof(MonoBehaviour).IsAssignableFrom(hostType))
                     {
-                        Container.Bind(hostType).WithId(customCounter.Name).FromComponentOnRoot().AsCached();
+                        Container.Bind(hostType).WithId(customCounter.Name).FromNewComponentOnNewGameObject().AsCached();
                     }
                     else
                     {
